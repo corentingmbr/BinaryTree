@@ -6,8 +6,8 @@ import lombok.Data;
 
 public class BinaryNode<E extends Comparable<E>> {
     private E data;
-    private BinaryNode<E> left;
-    private BinaryNode<E> right;
+    private BinaryNode<E> left = null;
+    private BinaryNode<E> right = null;
 
     public BinaryNode(E data) {
         this(data, null, null);
@@ -20,10 +20,9 @@ public class BinaryNode<E extends Comparable<E>> {
     }
 
     public void insert(final E data) {
-        if (this.data.compareTo(data) == 0) {
-            return;
-        }
-        if (this.data.compareTo(data) > 0) {
+        if (data.compareTo(this.data) == 0) return;
+
+        if (data.compareTo(this.data) > 0) {
             if (this.right == null) {
                 this.right = new BinaryNode<>(data);
             } else {
@@ -36,33 +35,38 @@ public class BinaryNode<E extends Comparable<E>> {
                 this.left.insert(data);
             }
         }
+    }
 
+    @Override
+    public String toString() {
+        return "BinaryNode{" +
+                "data=" + data +
+                ", left=" + left +
+                ", right=" + right +
+                '}';
     }
 
     public StringBuilder prefix(final StringBuilder sb) {
-        sb.append(this.data).append("");
-        if (this.left != null) sb.append(this.left.prefix(sb));
-        if (this.right != null) sb.append(this.right.prefix(sb));
+        sb.append(this.data).append(" ");
+        if (this.left != null) this.left.prefix(sb);
+        if (this.right != null) this.right.prefix(sb);
 
         return sb;
-
     }
 
     public StringBuilder infix(final StringBuilder sb) {
-        if (this.left != null) sb.append(this.left.infix(sb));
-        sb.append(this.data).append("");
-        if (this.right != null) sb.append(this.right.infix(sb));
+        if (this.left != null) this.left.infix(sb);
+        sb.append(this.data).append(" ");
+        if (this.right != null) this.right.infix(sb);
 
         return sb;
-
     }
 
-    public StringBuilder posfix(final StringBuilder sb) {
-        if (this.left != null) sb.append(this.left.posfix(sb));
-        if (this.right != null) sb.append(this.right.posfix(sb));
-        sb.append(this.data).append("");
+    public StringBuilder postfix(final StringBuilder sb) {
+        if (this.left != null) this.left.postfix(sb);
+        if (this.right != null) this.right.postfix(sb);
+        sb.append(this.data).append(" ");
 
         return sb;
-
     }
 }

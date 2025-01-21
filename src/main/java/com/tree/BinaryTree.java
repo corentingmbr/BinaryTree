@@ -2,10 +2,8 @@ package com.tree;
 
 import java.util.List;
 
-
 public class BinaryTree<E extends Comparable<E>> {
     private BinaryNode<E> root;
-
 
     public BinaryTree() {
         this(null);
@@ -24,6 +22,7 @@ public class BinaryTree<E extends Comparable<E>> {
             } else {
                 this.root.insert(data);
             }
+
         }
     }
 
@@ -48,17 +47,10 @@ public class BinaryTree<E extends Comparable<E>> {
         return this.root.infix(sb).toString();
     }
 
-    public String posfix() {
+    public String postfix() {
         StringBuilder sb = new StringBuilder();
         if (this.root == null) return sb.toString();
 
-        return this.root.posfix(sb).toString();
+        return this.root.postfix(sb).toString();
     }
-
 }
-
-
-
-
-
-

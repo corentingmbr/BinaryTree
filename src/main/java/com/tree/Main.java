@@ -9,6 +9,7 @@ public class Main {
         tree.insert(datas);
         System.out.println(tree.prefix());
         System.out.println(tree.infix());
-        System.out.println(tree.posfix());
+        System.out.println(tree.postfix());
+
     }
 }
