@@ -10,6 +10,7 @@ public class Main {
         System.out.println(tree.prefix());
         System.out.println(tree.infix());
         System.out.println(tree.postfix());
+        System.out.println(tree.lateral());
 
     }
 }

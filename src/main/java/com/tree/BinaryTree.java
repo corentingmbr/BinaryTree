@@ -1,6 +1,7 @@
 package com.tree;
 
 import java.util.List;
+import java.util.Queue;
 
 public class BinaryTree<E extends Comparable<E>> {
     private BinaryNode<E> root;
@@ -52,5 +53,20 @@ public class BinaryTree<E extends Comparable<E>> {
         if (this.root == null) return sb.toString();
 
         return this.root.postfix(sb).toString();
+    }
+
+    public String lateral() {
+        StringBuilder sb = new StringBuilder();
+        if (this.root == null) return " ";
+
+        Queue<BinaryNode<E>> queue = new java.util.LinkedList<>();
+        queue.add(this.root);
+        while (!queue.isEmpty()) {
+            BinaryNode<E> node = queue.poll();
+            sb.append(node.getData()).append(" ");
+            if (node.getLeft() != null) queue.add(node.getLeft());
+            if (node.getRight() != null) queue.add(node.getRight());
+        }
+        return sb.toString();
     }
 }
