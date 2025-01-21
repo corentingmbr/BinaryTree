@@ -69,4 +69,22 @@ public class BinaryNode<E extends Comparable<E>> {
 
         return sb;
     }
+
+    public int depth() {
+        if (this.left == null && this.right == null) return 1;
+        if (this.left == null) return 1 + this.right.depth();
+        if (this.right == null) return 1 + this.left.depth();
+        return 1 + Math.max(this.left.depth(), this.right.depth());
+    }
+
+    public int balanceFactor() {
+        if (this.left == null && this.right == null) return 0;
+        if (this.left == null) return this.right.balanceFactor();
+        if (this.right == null) return -this.left.balanceFactor();
+        return this.right.balanceFactor() - this.left.balanceFactor();
+
+
+    }
+
+
 }

@@ -69,4 +69,14 @@ public class BinaryTree<E extends Comparable<E>> {
         }
         return sb.toString();
     }
+
+    public int depth() {
+        if (this.root == null) return 0;
+        return this.root.depth();
+    }
+
+    public int balanceFactor() {
+        if (this.root == null) return 0;
+        return this.root.balanceFactor();
+    }
 }
